@@ -24,7 +24,7 @@ const SearchResultCard: React.FC<Props> = ({ result }) => {
         <p className="mr-4">
           <span className="text-gray-700">Staff Cases:</span>{' '}
           <span className="font-bold">
-            {numStaffCases >= 0 ? numStaffCases : 'None Reported'}{' '}
+            {numStaffCases >= 0 ? numStaffCases : 'N/A'}{' '}
             {numNewStaffCases > 0 ? (
               <span className="text-red-600">{`(+${numNewStaffCases})`}</span>
             ) : (
@@ -35,7 +35,7 @@ const SearchResultCard: React.FC<Props> = ({ result }) => {
         <p>
           <span className="text-gray-700">Student Cases:</span>{' '}
           <span className="font-bold">
-            {numStudentCases >= 0 ? numStudentCases : 'None Reported'}{' '}
+            {numStudentCases >= 0 ? numStudentCases : 'N/A'}{' '}
             {numNewStudentCases > 0 ? (
               <span className="text-red-600">{`(+${numNewStudentCases})`}</span>
             ) : (
