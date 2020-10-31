@@ -6,8 +6,8 @@ module.exports = (phase, { defaultConfig }) => {
   if (phase === PHASE_PRODUCTION_BUILD) {
     return {
       /* production only config options here */
-      // basePath: '/school-covid-tracker', // for github pages
-      // assetPrefix: '/school-covid-tracker/', // for github pages
+      basePath: '/school-covid-tracker', // for github pages
+      assetPrefix: '/school-covid-tracker/', // for github pages
     };
   }
 
