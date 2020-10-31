@@ -7,6 +7,10 @@ module.exports = {
   purge: [],
   theme: {
     extend: {},
+    fontFamily: {
+      display: ['Roboto', 'sans-serif'],
+      body: ['Roboto', 'sans-serif'],
+    },
   },
   variants: {},
   plugins: [],

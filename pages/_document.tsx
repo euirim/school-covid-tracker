@@ -29,7 +29,7 @@ class MyDocument extends Document {
           )}
           <link rel="shortcut icon" href="/favicon.ico" />
         </Head>
-        <body>
+        <body style={{ minHeight: '100vh' }}>
           <Main />
           <NextScript />
         </body>
