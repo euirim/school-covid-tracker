@@ -7,12 +7,14 @@ import { buildSearchIndex } from '@utils/search';
 import { Search } from 'js-search';
 import SearchBar from '@components/SearchBar';
 import SearchResults from '@components/SearchResults';
+import { displayLocalizedDatetime } from '@utils/time';
 
 type Props = {
+  dataCollectedDate: number;
   records: SearchRecord[];
 };
 
-const Home: NextPage<Props> = ({ records }) => {
+const Home: NextPage<Props> = ({ dataCollectedDate, records }) => {
   const [searchIndex, setSearchIndex] = useState<Search | null>(null);
   useEffect(() => {
     setSearchIndex(buildSearchIndex(records));
@@ -46,9 +48,13 @@ const Home: NextPage<Props> = ({ records }) => {
     <div className="flex flex-col items-stretch h-screen">
       <div>
         <div className="max-w-2xl px-5 py-8 mx-auto">
-          <h1 className="mb-4 font-sans text-4xl font-bold text-center text-gray-900">
+          <h1 className="mb-2 font-sans text-4xl font-bold text-center text-gray-900">
             Ohio School COVID-19 Case Tracker
           </h1>
+          <p className="mb-4 text-center text-gray-600">
+            Data last retrieved{' '}
+            {displayLocalizedDatetime(new Date(dataCollectedDate))}
+          </p>
           <div>
             <SearchBar
               onSearch={onSearch}
@@ -97,6 +103,7 @@ export const getStaticProps: GetStaticProps = async (): Promise<any> => {
   return {
     props: {
       records,
+      dataCollectedDate: Date.now(),
     },
   };
 };
