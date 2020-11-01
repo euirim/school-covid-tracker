@@ -76,9 +76,9 @@ const Home: NextPage<Props> = ({
   }, [router.query.q, searchIndex]);
 
   return (
-    <div className="flex flex-col items-stretch h-screen">
+    <div className="flex flex-col items-stretch h-screen lg:flex-row">
       <div>
-        <div className="max-w-2xl px-5 py-8 mx-auto">
+        <div className="max-w-2xl px-5 py-8 mx-auto lg:h-screen lg:overflow-y-auto lg:px-12">
           <h1 className="mb-2 font-sans text-4xl font-bold leading-tight text-center text-gray-900 sm:leading-normal">
             Ohio School COVID-19 Case Tracker
           </h1>
@@ -104,15 +104,15 @@ const Home: NextPage<Props> = ({
               label="Staff Cases"
             />
           </div>
-          <div style={{ marginBottom: '-1rem' }}>
+          <div style={{ marginBottom: '-1rem' }} className="lg:pb-4">
             <h2 className="mb-4 text-lg font-bold text-center text-gray-600 sm:text-xl">
-              Schools with Most Cases
+              Top 5 Schools With Most Cases
             </h2>
             <SearchResults results={records.slice(0, 5)} onWhiteBg />
           </div>
         </div>
       </div>
-      <div className="flex-grow bg-gray-200">
+      <div className="flex-grow bg-gray-200 lg:overflow-y-auto lg:h-screen">
         <div className="max-w-2xl px-5 pt-8 mx-auto mb-6">
           <div className="mb-6">
             <SearchBar
