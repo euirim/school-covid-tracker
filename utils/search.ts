@@ -9,3 +9,14 @@ export const buildSearchIndex = (records: unknown[]): Search => {
 
   return search;
 };
+
+export const numerifyCaseCount = (
+  rawCaseCount: string,
+  negativeForInvalid?: boolean
+) => {
+  negativeForInvalid =
+    negativeForInvalid === undefined ? false : negativeForInvalid;
+  if (rawCaseCount.toLowerCase() === 'no cases reported')
+    return negativeForInvalid ? -1 : 0;
+  return parseInt(rawCaseCount);
+};
