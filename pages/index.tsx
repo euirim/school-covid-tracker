@@ -9,6 +9,7 @@ import SearchBar from '@components/SearchBar';
 import SearchResults from '@components/SearchResults';
 import { displayLocalizedDatetime } from '@utils/time';
 import Stat from '@components/Stat';
+import Head from 'next/head';
 
 const sortSearchResults = (results: SearchRecord[]): SearchRecord[] => {
   const countTotalCases = (x: SearchRecord): number => {
@@ -76,71 +77,76 @@ const Home: NextPage<Props> = ({
   }, [router.query.q, searchIndex]);
 
   return (
-    <div className="flex flex-col items-stretch h-screen lg:flex-row">
-      <div>
-        <div className="max-w-2xl px-5 py-8 mx-auto lg:h-screen lg:overflow-y-auto lg:px-12">
-          <h1 className="mb-2 font-sans text-4xl font-bold leading-tight text-center text-gray-900 sm:leading-normal">
-            Ohio School COVID-19 Case Tracker
-          </h1>
-          <p className="text-center text-gray-600">
-            Data last retrieved{' '}
-            <b>{displayLocalizedDatetime(new Date(dataCollectedDate))}</b>
-          </p>
-          <p className="mb-6 text-xs italic text-center text-gray-600">
-            Data typically updated every Thursday by the Ohio Department of
-            Health.
-          </p>
-          <div className="flex justify-center p-5 mb-6 border border-gray-400 rounded-lg shadow-md">
-            <div className="mr-10 sm:mr-20">
+    <>
+      <Head>
+        <title>Ohio School COVID-19 Case Tracker</title>
+      </Head>
+      <div className="flex flex-col items-stretch h-screen lg:flex-row">
+        <div>
+          <div className="max-w-2xl px-5 py-8 mx-auto lg:h-screen lg:overflow-y-auto lg:px-12">
+            <h1 className="mb-2 font-sans text-4xl font-bold leading-tight text-center text-gray-900 sm:leading-normal">
+              Ohio School COVID-19 Case Tracker
+            </h1>
+            <p className="text-center text-gray-600">
+              Data last retrieved{' '}
+              <b>{displayLocalizedDatetime(new Date(dataCollectedDate))}</b>
+            </p>
+            <p className="mb-6 text-xs italic text-center text-gray-600">
+              Data typically updated every Thursday by the Ohio Department of
+              Health.
+            </p>
+            <div className="flex justify-center p-5 mb-6 border border-gray-400 rounded-lg shadow-md">
+              <div className="mr-10 sm:mr-20">
+                <Stat
+                  value={totalStudentCases}
+                  valueChange={totalNewStudentCases}
+                  label="Student Cases"
+                />
+              </div>
               <Stat
-                value={totalStudentCases}
-                valueChange={totalNewStudentCases}
-                label="Student Cases"
+                value={totalStaffCases}
+                valueChange={totalNewStaffCases}
+                label="Staff Cases"
               />
             </div>
-            <Stat
-              value={totalStaffCases}
-              valueChange={totalNewStaffCases}
-              label="Staff Cases"
-            />
-          </div>
-          <div style={{ marginBottom: '-1rem' }} className="lg:pb-4">
-            <h2 className="mb-4 text-lg font-bold text-center text-gray-600 sm:text-xl">
-              Top 5 Schools With Most Cases
-            </h2>
-            <SearchResults results={records.slice(0, 5)} onWhiteBg />
+            <div style={{ marginBottom: '-1rem' }} className="lg:pb-4">
+              <h2 className="mb-4 text-lg font-bold text-center text-gray-600 sm:text-xl">
+                Top 5 Schools With Most Cases
+              </h2>
+              <SearchResults results={records.slice(0, 5)} onWhiteBg />
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex-grow bg-gray-200 lg:overflow-y-auto lg:h-screen">
-        <div className="max-w-2xl px-5 pt-8 mx-auto mb-6">
-          <div className="mb-6">
-            <SearchBar
-              onSearch={onSearch}
-              defaultValue={
-                router.query.q
-                  ? decodeURIComponent(router.query.q as string)
-                  : undefined
-              }
-            />
-          </div>
+        <div className="flex-grow bg-gray-200 lg:overflow-y-auto lg:h-screen">
+          <div className="max-w-2xl px-5 pt-8 mx-auto mb-6">
+            <div className="mb-6">
+              <SearchBar
+                onSearch={onSearch}
+                defaultValue={
+                  router.query.q
+                    ? decodeURIComponent(router.query.q as string)
+                    : undefined
+                }
+              />
+            </div>
 
-          <div>
-            {searchResults.length > 0 ? (
-              <SearchResults results={searchResults} />
-            ) : (
-              <div className="p-4 bg-white rounded-lg shadow-xl">
-                <p>
-                  {router.query.q
-                    ? 'No results found.'
-                    : 'Please enter a search term.'}
-                </p>
-              </div>
-            )}
+            <div>
+              {searchResults.length > 0 ? (
+                <SearchResults results={searchResults} />
+              ) : (
+                <div className="p-4 bg-white rounded-lg shadow-xl">
+                  <p>
+                    {router.query.q
+                      ? 'No results found.'
+                      : 'Please enter a search term.'}
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
