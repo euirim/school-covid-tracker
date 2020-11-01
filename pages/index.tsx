@@ -91,7 +91,7 @@ const Home: NextPage<Props> = ({
             Health.
           </p>
           <div className="flex justify-center p-5 mb-6 border border-gray-400 rounded-lg shadow-md">
-            <div className="mr-20">
+            <div className="mr-10 sm:mr-20">
               <Stat
                 value={totalStudentCases}
                 valueChange={totalNewStudentCases}

@@ -10,7 +10,7 @@ const Stat: React.FC<Props> = ({ label, value, valueChange }) => (
       <h2 className="text-4xl leading-none">{value}</h2>
 
       {valueChange !== 0 && (
-        <h3 className="mt-1 ml-2 text-xl font-bold leading-none text-red-600">
+        <h3 className="mt-1 ml-2 text-lg font-bold leading-none text-red-600 sm:text-xl">
           +{valueChange}
         </h3>
       )}
