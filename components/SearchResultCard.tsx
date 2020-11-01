@@ -4,16 +4,21 @@ const convertCaseNumber = (num: string): number => {
 
 type Props = {
   result: SearchRecord;
+  onWhiteBg?: boolean;
 };
 
-const SearchResultCard: React.FC<Props> = ({ result }) => {
+const SearchResultCard: React.FC<Props> = ({ result, onWhiteBg }) => {
   const numStaffCases = convertCaseNumber(result.staff_cases_cumulative);
   const numNewStaffCases = convertCaseNumber(result.staff_cases_new);
   const numStudentCases = convertCaseNumber(result.student_cases_cumulative);
   const numNewStudentCases = convertCaseNumber(result.student_cases_new);
 
   return (
-    <div className="p-5 mb-5 bg-white rounded-lg shadow-xl">
+    <div
+      className={`p-5 mb-5 bg-white rounded-lg ${
+        onWhiteBg ? 'border border-gray-400' : 'shadow-xl'
+      }`}
+    >
       <h2 className="text-sm font-bold tracking-widest text-gray-500 uppercase">
         {result.county} County
       </h2>

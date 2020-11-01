@@ -104,7 +104,17 @@ const Home: NextPage<Props> = ({
               label="Staff Cases"
             />
           </div>
-          <div>
+          <div style={{ marginBottom: '-1rem' }}>
+            <h2 className="mb-4 text-lg font-bold text-center text-gray-600 sm:text-xl">
+              Schools with Most Cases
+            </h2>
+            <SearchResults results={records.slice(0, 5)} onWhiteBg />
+          </div>
+        </div>
+      </div>
+      <div className="flex-grow bg-gray-200">
+        <div className="max-w-2xl px-5 pt-8 mx-auto mb-6">
+          <div className="mb-6">
             <SearchBar
               onSearch={onSearch}
               defaultValue={
@@ -114,10 +124,7 @@ const Home: NextPage<Props> = ({
               }
             />
           </div>
-        </div>
-      </div>
-      <div className="flex-grow bg-gray-200">
-        <div className="max-w-2xl px-5 pt-8 mx-auto">
+
           <div>
             {searchResults.length > 0 ? (
               <SearchResults results={searchResults} />
@@ -144,10 +151,12 @@ export const getStaticProps: GetStaticProps = async (): Promise<any> => {
     'https://coronavirus.ohio.gov/static/dashboards/school_reporting.csv'
   );
   const csv = res.data;
-  const records: SearchRecord[] = CSVParse(csv, {
-    columns: true,
-    skip_empty_lines: true,
-  });
+  const records: SearchRecord[] = sortSearchResults(
+    CSVParse(csv, {
+      columns: true,
+      skip_empty_lines: true,
+    })
+  );
 
   // Count total cases for students and staff
   const {
