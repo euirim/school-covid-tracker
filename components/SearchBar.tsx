@@ -16,7 +16,7 @@ const SearchBar: React.FC<Props> = ({ defaultValue, onSearch }) => {
   return (
     <div className="flex">
       <input
-        className="w-full p-3 mr-3 placeholder-black border border-gray-400 rounded-md shadow-md focus:border-blue-500"
+        className="w-full p-3 mr-3 placeholder-gray-600 border border-gray-400 rounded-md shadow-md focus:border-blue-500"
         placeholder="Search a county or school"
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={_handleKeyDown}
