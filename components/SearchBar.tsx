@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HiOutlineSearch } from 'react-icons/hi';
+import { FaSearch } from 'react-icons/fa';
 
 type Props = {
   onSearch: (query: string) => void;
@@ -23,10 +23,10 @@ const SearchBar: React.FC<Props> = ({ defaultValue, onSearch }) => {
         defaultValue={defaultValue ? defaultValue : ''}
       />
       <button
-        className="px-4 text-white bg-blue-500 border border-gray-400 rounded-md shadow-md"
+        className="px-4 text-white bg-blue-500 rounded-md shadow-md"
         onClick={() => onSearch(query)}
       >
-        <HiOutlineSearch />
+        <FaSearch />
       </button>
     </div>
   );
