@@ -22,7 +22,7 @@ const SearchResultCard: React.FC<Props> = ({ result, onWhiteBg }) => {
       <h2 className="text-sm font-bold tracking-widest text-gray-500 uppercase">
         {result.county} County
       </h2>
-      <h1 className="mb-2 text-2xl text-gray-900">
+      <h1 className="mb-2 text-xl text-gray-900 sm:text-2xl">
         {result.school_or_school_district}
       </h1>
       <div className="flex">

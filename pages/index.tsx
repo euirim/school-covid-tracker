@@ -84,10 +84,10 @@ const Home: NextPage<Props> = ({
       <div className="flex flex-col items-stretch h-screen lg:flex-row">
         <div>
           <div className="max-w-2xl px-5 py-8 mx-auto lg:h-screen lg:overflow-y-auto lg:px-12">
-            <h1 className="mb-2 font-sans text-4xl font-bold leading-tight text-center text-gray-900 sm:leading-normal">
+            <h1 className="mb-2 font-sans text-2xl font-bold leading-tight text-center text-gray-900 sm:text-3xl md:text-4xl sm:leading-normal">
               Ohio School/District COVID-19 Case Tracker
             </h1>
-            <p className="text-center text-gray-600">
+            <p className="text-sm text-center text-gray-600 sm:text-md">
               Data last retrieved{' '}
               <b>{displayLocalizedDatetime(new Date(dataCollectedDate))}</b>
             </p>
@@ -96,7 +96,7 @@ const Home: NextPage<Props> = ({
               Health.
             </p>
             <div className="flex justify-center p-5 mb-6 border border-gray-400 rounded-lg shadow-md">
-              <div className="mr-10 sm:mr-20">
+              <div className="mr-5 sm:mr-20">
                 <Stat
                   value={totalStudentCases}
                   valueChange={totalNewStudentCases}
