@@ -16,7 +16,11 @@ export const numerifyCaseCount = (
 ) => {
   negativeForInvalid =
     negativeForInvalid === undefined ? false : negativeForInvalid;
-  if (rawCaseCount.toLowerCase() === 'no cases reported')
+  if (rawCaseCount.trim().toLowerCase() === 'no cases reported')
     return negativeForInvalid ? -1 : 0;
-  return parseInt(rawCaseCount);
+  const result = parseInt(rawCaseCount);
+  if (!result) {
+    return 0;
+  }
+  return result;
 };
